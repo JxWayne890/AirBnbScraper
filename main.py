@@ -5,7 +5,7 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
 
 from flask import Flask, jsonify
 from flask_cors import CORS
-from src.routes.underwriting import underwriting_bp
+from underwriting import underwriting_bp  # <-- updated this line
 import logging
 
 # Set up logging
