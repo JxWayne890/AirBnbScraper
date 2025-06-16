@@ -31,4 +31,4 @@ class AirbnbScraper:
             elif '/listing/' in url:
                 listing_id = url.split('/listing/')[1].split('?')[0].split('/')[0]
             else:
-                match = re.search(r'/(
+                match = re.search(r'/rooms/(\d+)', url)
