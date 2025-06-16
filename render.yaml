@@ -3,5 +3,6 @@ services:
     name: airbnb-underwriter
     env: python
     buildCommand: "pip install -r requirements.txt"
-    startCommand: "gunicorn app:app"
+    startCommand: "gunicorn main:app"
     autoDeploy: true
+    web: gunicorn main:app
