@@ -32,3 +32,13 @@ class AirbnbScraper:
                 listing_id = url.split('/listing/')[1].split('?')[0].split('/')[0]
             else:
                 match = re.search(r'/rooms/(\d+)', url)
+                if match:
+                    listing_id = match.group(1)
+                else:
+                    return None
+            return listing_id
+        except Exception as e:
+            logger.error(f"Error extracting listing ID from URL: {url} | Exception: {e}")
+            return None
+
+    # You can continue adding other methods like scrape_property_page, scrape_comps, etc.
