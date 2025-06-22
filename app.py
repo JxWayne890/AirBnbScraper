@@ -1,23 +1,17 @@
 from flask import Flask, request, jsonify
-import requests
-from bs4 import BeautifulSoup
+from scraper import scrape_website
 
 app = Flask(__name__)
 
-@app.route('/')
+@app.route("/")
 def home():
     return "Scraper is running."
 
-@app.route('/scrape', methods=['POST'])
+@app.route("/scrape", methods=["POST"])
 def scrape():
     data = request.get_json()
-    url = data.get('url')
-    
+    url = data.get("url")
     if not url:
-        return jsonify({'error': 'Missing URL'}), 400
-
-    res = requests.get(url)
-    soup = BeautifulSoup(res.text, 'html.parser')
-    title = soup.title.string if soup.title else 'No title found'
-
-    return jsonify({'title': title})
+        return jsonify({"error": "URL is required"}), 400
+    result = scrape_website(url)
+    return jsonify(result)
